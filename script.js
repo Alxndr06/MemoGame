@@ -49,6 +49,8 @@ function onCardClick(e){
     selectedCards.push(card);
     //On vérifie que deux cards soient séléctionées
     if(selectedCards.length == 2) {
+        //Désactivation des clics pendant 1 seconde pour éviter de jam le jeu.
+        gameBoard.classList.add('no-click');
         setTimeout(() => {
             if(selectedCards[0].dataset.value == selectedCards[1].dataset.value){
                 //on a trouvé une paire
@@ -64,6 +66,9 @@ function onCardClick(e){
                     selectedCards[1].classList.remove("flip");
             }
             selectedCards = [];
+            
+            //réactivation des clics
+            gameBoard.classList.remove('no-click');
         }, 1000)
     }
     if(foundPairs === 8){

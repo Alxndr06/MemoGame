@@ -29,3 +29,7 @@ body {
 .card .card-content {
     max-width: 100%;
 }
+
+.no-click {
+    pointer-events: none;
+}
