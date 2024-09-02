@@ -47,7 +47,7 @@ function onCardClick(e){
     card.classList.add('flip');
 
     selectedCards.push(card);
-    //On vérifie que deux cards soient séléctionées
+    //On vérifie que deux cards soient séléctionnées
     if(selectedCards.length == 2) {
         //Désactivation des clics pendant 1 seconde pour éviter de jam le jeu.
         gameBoard.classList.add('no-click');
@@ -59,6 +59,9 @@ function onCardClick(e){
                 selectedCards[0].removeEventListener('click', onCardClick);
                 selectedCards[1].removeEventListener('click', onCardClick);
                 foundPairs +=1;
+                if(foundPairs >= 8){
+                    alert("Vous avez trouvé toutes les paires. Bravo !");
+                }
             }
             else{
                 //on s'est trompé
@@ -66,13 +69,10 @@ function onCardClick(e){
                     selectedCards[1].classList.remove("flip");
             }
             selectedCards = [];
-            
+
             //réactivation des clics
             gameBoard.classList.remove('no-click');
         }, 1000)
-    }
-    if(foundPairs === 8){
-        alert("Vous avez trouvé toutes les paires. Bravo !");
     }
 }
 
@@ -84,5 +84,3 @@ allCards.forEach(card => {
     const cardHtml = createCard(card);
     gameBoard.appendChild(cardHtml);
 })
-
-
