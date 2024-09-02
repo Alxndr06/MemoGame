@@ -42,7 +42,39 @@ function shuffleArray(arrayToShuffle) {
         return arrayShuffled; 
 }
 
+let timerInterval;
+let elapsedTime = 0; // Temps écoulé en secondes
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        elapsedTime++;
+        displayTime();
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function displayTime() {
+    const minutes = Math.floor(elapsedTime / 60);
+    const seconds = elapsedTime % 60;
+
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+    document.getElementById('timer').textContent = `${formattedMinutes}:${formattedSeconds}`;
+}
+
+// Démarrer le chronomètre dès que le jeu commence, par exemple au premier clic sur une carte
+let gameStarted = false;
+
 function onCardClick(e){
+    if (!gameStarted) {
+        startTimer(); // Démarrer le chronomètre au premier clic
+        gameStarted = true;
+    }
+
     const card = e.target.parentElement;
     card.classList.add('flip');
 
@@ -60,7 +92,8 @@ function onCardClick(e){
                 selectedCards[1].removeEventListener('click', onCardClick);
                 foundPairs +=1;
                 if(foundPairs >= 8){
-                    alert("Vous avez trouvé toutes les paires. Bravo !");
+                    stopTimer(); // Arrêter le chronomètre
+                    alert(`Vous avez trouvé toutes les paires en ${document.getElementById('timer').textContent}. Bravo !`);
                 }
             }
             else{

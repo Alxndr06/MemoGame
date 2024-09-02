@@ -2,6 +2,9 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
 }
+#timer {
+    
+}
 #game-board {
     display: grid;
     grid-template-columns: repeat(4, 100px);
