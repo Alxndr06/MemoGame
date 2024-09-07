@@ -1,4 +1,5 @@
-let userName = window.prompt("Quel est votre nom ?");
+//Demande le nom de l'utilisateur
+let userName = window.prompt("Bonjour et bienvenue ! Quel est votre nom ?");
 
 //Mon tableau de cartes avant duplication
 const cards = [
