@@ -1,3 +1,6 @@
+//Demande le nom de l'utilisateur
+let userName = window.prompt("Bonjour et bienvenue ! Quel est votre nom ?");
+
 //Mon tableau de cartes avant duplication
 const cards = [
     'https://picsum.photos/id/237/100/100', 
@@ -93,7 +96,7 @@ function onCardClick(e){
                 foundPairs +=1;
                 if(foundPairs >= 8){
                     stopTimer(); // Arrêter le chronomètre
-                    alert(`Vous avez trouvé toutes les paires en ${document.getElementById('timer').textContent}. Bravo !`);
+                    alert(`Félicitations ${userName}. Vous avez trouvé toutes les paires en ${document.getElementById('timer').textContent}. Bravo !`);
                 }
             }
             else{
